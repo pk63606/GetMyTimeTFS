@@ -167,3 +167,25 @@ python3 misc.py; python3 lotrend.py; python3 intraday.py
 ```
 
 *Educational research, not investment advice.*
+
+## Follow-up: W18 deep-dive and fit with the live SPX options books (`w18_deep.py`, `fit.py`)
+
+`fit.py` reads month-end net liquidity exported from OptionOmega into a local, git-ignored
+`optionomega/` folder. Account data is not committed.
+
+**W18 unlevered, 2007 → 2026-11 (10 bps slippage):**
+- CAGR 9.2 %, Sharpe 0.66, max drawdown -21 %.
+- Correlation to SPY 0.43, beta 0.29.
+- Captures 29 % of SPY's down months and 51 % of its up months.
+- 5 of 20 years were negative, with the worst in 2015 (-14.7 %).
+- It made money in the GFC (+14 % vs SPY -55 %).
+- It fell 7 % in both the COVID crash and the April 2025 tariff shock.
+- It is in a **-12.5 % drawdown since 2026-10-07**.
+
+**Fit with the books (2022–2026):**
+- **Correlation of monthly returns to W18 is -0.16 to -0.33.**
+- W18 was positive in 83 % of the books' six worst months each.
+- **Capital split:** moving capital from the book to W18 cuts CAGR roughly one-for-one.
+- **Overlay:** buying W18 with idle collateral cash adds about 2–5 CAGR points at 25–50 % of NAV, and Sharpe +0.1–0.3.
+- **Exception: November 2026 is the first month both lost together** (5359 -2.1 %, W18 -9.2 %).
+- **The overlay is only feasible if the ETF positions don't eat option buying power.** Check margin treatment first.
