@@ -10,7 +10,10 @@
   content is conceptual HFT/market-making lessons.
 - **The tradeable material is its sister site quants.md**: 50 strategies + 1
   sentiment demo, code in `QuantJourneyOrg/quantjourney-bt` (Apache-2.0).
-  Every strategy with rules that could be re-run on public data was re-implemented here (49 of 51).
+  Re-implemented and re-run: W01–W25, O01–O14 and the five intraday strategies
+  (O15, O16, W07–W09) — 44 strategies.
+  Covered by a close equivalent rather than run separately: O18 (identical rules to O01),
+  O17 (top-3 6-month rotation, ≈ W11), O19 (FX momentum, ≈ W23) and O20 (futures breakout, ≈ W25).
   Skipped: W26 (needs a proprietary sentiment feed) and the WF01–05 walk-forward
   wrappers (they re-validate W01/W03, covered below).
 
@@ -144,7 +147,7 @@ roll-gapped futures, keeping only the long side. The six ETFs were SPY, QQQ, IEF
 ## Bottom line
 
 - **Nothing in the library is a free-money edge once costs are realistic.**
-- **About 20 of the 49 strategies tested are negative, cost-killed, or no better than holding their own universe.**
+- **Of the 47 rule-based strategies (the 44 tested plus the 3 covered by equivalents; O18 counted with O01), about 41 are negative, cost-killed, or no better than holding their own universe.** Two beat passive on Sharpe (W18, W05), and a handful (W01, W02, O04, O12) only buy smaller drawdowns.
 - **What survives is portfolio construction rather than prediction:** momentum selection with volatility targeting (W18, unlevered), inverse-vol weighting (W05), and slow trend filters that trade lower return for much smaller drawdowns.
 - **Short-horizon strategies fail at retail costs:** mean reversion, MACD, breakouts with time exits, pairs, cross-sectional L/S and every intraday strategy.
 - **W18 itself is not statistically proven:** its t-stat is 1.84 and it lost money in 2026 out-of-sample.
